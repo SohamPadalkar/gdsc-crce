@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Formula1";
+  src: url("./assets/fonts/Formula1-Regular.ttf");
+}
+
+.f1 {
+  font-family: "Formula1", sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-    margin:0;
-    background:#050816;
-    color:white;
-    font-family:Inter,sans-serif;
+  background:#050816;
+  overflow-x:hidden;
 }

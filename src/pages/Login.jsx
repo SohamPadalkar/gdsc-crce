@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
@@ -53,6 +54,20 @@ const Login = () => {
                 >
                     Login
                 </button>
+
+                <p className="text-center text-gray-400 mt-6">
+
+                    Don't have an account?{" "}
+
+                    <Link
+                        to="/signup"
+                        className="text-[#4285F4] hover:underline font-semibold"
+                    >
+                        Create Account
+                    </Link>
+
+                </p>
+
 
             </div>
 

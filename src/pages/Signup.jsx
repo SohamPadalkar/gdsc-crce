@@ -3,6 +3,10 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
+import { Link } from "react-router-dom";
+
 
 const Signup = () => {
 
@@ -13,7 +17,20 @@ const Signup = () => {
 
     const handleSignup = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            await setDoc(
+                doc(db, "users", userCredential.user.uid),
+                {
+                    email: userCredential.user.email,
+                    role: "user",
+                    createdAt: new Date(),
+                }
+            );
 
             toast.success("Account created!");
 
@@ -53,6 +70,19 @@ const Signup = () => {
                 >
                     Create Account
                 </button>
+
+                <p className="text-center text-gray-400 mt-6">
+
+                    Already have an account?{" "}
+
+                    <Link
+                        to="/login"
+                        className="text-[#34A853] hover:underline font-semibold"
+                    >
+                        Sign In
+                    </Link>
+
+                </p>
 
             </div>
 
